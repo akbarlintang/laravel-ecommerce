@@ -9,11 +9,27 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-
     </head>
     <body>
         <header>
+            <nav id="navbar-top" class="navbar navbar-expand-lg navbar-dark">
+                <div class="container nav-top">
+                    <a class="navbar-brand logo" href="#">Zeroshop</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto justify-content-around">
+                            <a class="nav-link" href="#">Shop</a>
+                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#">Blog</a>
+                            <a class="nav-link" href="#">Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!--
             <div id="navbar-top" class="top-nav container">
                 <div class="logo">Zeroshop</div>
                 <ul>
@@ -23,6 +39,7 @@
                     <li><a href="#">Cart</a></li>
                 </ul>
             </div>
+            -->
 
             <div class="hero container">
                 <div class="hero-copy">
@@ -137,5 +154,7 @@
                 </ul>
             </div>
         </footer>
+
+        <script src="/js/app.js"></script>
     </body>
 </html>
