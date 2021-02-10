@@ -14,6 +14,7 @@ $lightgraybg: #f5f5f5;
 $graybg: #535353;
 $separator: #cdcdcd;
 $darkblue: #001427;
+$semiblack: #121212;
 $gutter: 30px;
 
 html {
@@ -37,6 +38,10 @@ a {
     color: $text-color;
 
     &:visited {
+        color: $text-color;
+    }
+
+    &:hover {
         color: $text-color;
     }
 }
@@ -105,7 +110,7 @@ img {
 }
 
 .fixed-top {
-    background: #121212;
+    background: $semiblack;
 }
 
 nav {
@@ -270,7 +275,7 @@ header {
 }
 
 footer {
-    background: $darkblue;
+    background: $semiblack;
     color: $white;
     padding: 40px 0;
 
@@ -299,5 +304,21 @@ footer {
         a {
             color: $white !important;
         }
+    }
+}
+
+.offered-products {
+    background: $lightgraybg;
+    border-top: 1px solid $separator;
+    padding: 50px 0;
+}
+
+.product-field {
+    padding-left: 50px;
+
+    @media screen and (max-width: 576px) {
+        padding-top: 50px;
+        text-align: center;
+        padding-left: 0;
     }
 }
