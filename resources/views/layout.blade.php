@@ -19,10 +19,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto justify-content-around">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="/products">Shop</a>
                         <a class="nav-link" href="#">About</a>
                         <a class="nav-link" href="#">Blog</a>
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="/cart">Cart</a>
                     </div>
                 </div>
             </div>
