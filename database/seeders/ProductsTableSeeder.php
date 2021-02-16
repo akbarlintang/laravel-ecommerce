@@ -23,8 +23,8 @@ class ProductsTableSeeder extends Seeder
         ]);
 
         Product::create([
-            'name' => 'Laptop 2',
-            'slug' => 'laptop-2',
+            'name' => 'MacBook Pro 2017',
+            'slug' => 'macbook-pro-2017',
             'details' => '15 inch, 1TB SSD, 16GB RAM',
             'price' => 199999,
             'description' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis possimus quas nostrum vitae corrupti placeat amet incidunt porro tenetur odio, earum excepturi, officia iusto repellendus dignissimos delectus voluptatibus consequuntur cupiditate.',
