@@ -39,7 +39,6 @@
                     <p>One stop solution for your gadget needs.</p>
                     <div class="hero-buttons">
                         <a href="/shop" class="btn button">Shop Now</a>
-                        <a href="#" class="btn button">Button 2</a>
                     </div>
                 </div>
 
