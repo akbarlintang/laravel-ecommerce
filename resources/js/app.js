@@ -12,9 +12,9 @@ if ($(window).width() > 992) {
     });
 }
 
-if ($(window).width() < 768) {
+if ($(window).width() < 800) {
     $(window).scroll(function(){  
-        if ($(this).scrollTop() > 40) {
+        if ($(this).scrollTop() > 650) {
             $('#navbar-top').addClass("fixed-top");
             $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
         }else{

@@ -124,7 +124,7 @@
                         </div>
 
                         <div class="pt-4 pb-3">
-                            <button class="btn btn-primary btn-lg">Checkout</button>
+                            <a href="/confirmation" class="btn btn-success btn-lg text-white">Checkout</a>
                         </div>
                 </form>
             </div>

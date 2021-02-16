@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Zeroshop | Find all your gadget needs</title>
+        <title>Zeroshop | One stop solution for your gadget needs</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -14,39 +14,31 @@
         <header>
             <nav id="navbar-top" class="navbar navbar-expand-lg navbar-dark">
                 <div class="container nav-top">
-                    <a class="navbar-brand logo" href="#">Zeroshop</a>
+                    <a class="navbar-brand logo" href="{{ route('home-page') }}">Zeroshop</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav ml-auto justify-content-around">
-                            <a class="nav-link" href="/products">Shop</a>
+                            <a class="nav-link" href="{{ route('shop.index') }}">Shop</a>
                             <a class="nav-link" href="#">About</a>
                             <a class="nav-link" href="#">Blog</a>
-                            <a class="nav-link" href="/cart">Cart</a>
+                            <a class="nav-link" href="{{ route('cart.index') }}">Cart  
+                                @if (Cart::instance('default')->count() > 0)
+                                    <span class="cart-q">{{ Cart::instance('default')->count() }}</span>
+                                @endif
+                            </a>
                         </div>
                     </div>
                 </div>
             </nav>
 
-            <!--
-            <div id="navbar-top" class="top-nav container">
-                <div class="logo">Zeroshop</div>
-                <ul>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Cart</a></li>
-                </ul>
-            </div>
-            -->
-
             <div class="hero container">
                 <div class="hero-copy">
                     <h1>Zeroshop</h1>
-                    <p>Find all your gadget needs.</p>
+                    <p>One stop solution for your gadget needs.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn button">Button 1</a>
+                        <a href="/shop" class="btn button">Shop Now</a>
                         <a href="#" class="btn button">Button 2</a>
                     </div>
                 </div>
@@ -69,50 +61,21 @@
                 </div>
 
                 <div class="products text-center">
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                        <a href="#"><div class="product-name">Macbook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
+                    @foreach ($products as $product)
+                        <div class="card">
+                            <a href="{{ route('shop.show', $product->slug) }}" class="product-card">
+                                <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3">
+                                <div class="card-body">
+                                    <div class="product-name card-text font-weight-bold text-white">{{ $product->name }}</div>
+                                    <div class="product-price card-text font-weight-normal text-white">{{ $product->presentPrice() }}</div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="text-center button-container">
-                    <a href="#" class="btn button-dark">View more</a>
+                    <a href="{{ route('shop.index') }}" class="btn button-dark">View more</a>
                 </div>
             </div>
         </div>
