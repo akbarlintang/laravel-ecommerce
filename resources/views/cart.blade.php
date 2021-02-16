@@ -58,7 +58,11 @@
                         </form>
                     </div>
                     <div>
-                        <a href="#"><h6>Save for later</h6></a>
+                        <form action="{{ route('cart.switchSave', $item->rowId) }}" method="POST">
+                            {{ csrf_field() }}
+
+                            <button type="submit" class="btn-sm btn btn-success">Save for Later</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-sm-2 mx-auto my-auto p-top">
@@ -114,76 +118,71 @@
 
             @else
                 <div class="alert alert-danger">
-                    <h5>No items in cart</h5>
+                    <h5 class="text-danger">You have no items in Cart.</h5>
                 </div>
+
                 <div class="text-center">
                     <a href="{{ route('shop.index') }}" class="btn btn-primary text-white btn-lg">Continue shopping</a>
                 </div>
 
             @endif
 
-            <h4 class="font-weight-bold pt-5 pb-3">2 items Saved For Later</h4>
+            @if (Cart::instance('saveForLater')->count() > 0)
+
+            <h4 class="font-weight-bold pt-5 pb-3">{{ Cart::instance('saveForLater')->count() }} item(s) Saved for Later</h4>
             <div class="border-bottom"></div>
 
-            <div class="row pt-3">
-                <div class="col-sm-2 my-auto mx-auto">
-                    <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
+            @foreach (Cart::instance('saveForLater')->content() as $item)
+                <div class="row pt-3">
+                    <div class="col-sm-2 my-auto mx-auto">
+                        <a href="{{ route('shop.show', $item->model->slug) }}">
+                            <img src="{{ asset('img/products/'.$item->model->slug.'.png') }}" alt="Product Image">
+                        </a>
+                    </div>
+
+                    <div class="col-sm-4 mx-auto my-auto p-top text-center">
+                        <a href="{{ route('shop.show', $item->model->slug) }}"><h5 class="font-weight-bold">{{ $item->model->name }}</h5></a>
+                        <h5 class="text-secondary">{{ $item->model->details }}</h5>
+                    </div>
+                    <div class="col-sm-2 mx-auto my-auto p-top text-center">
+                        <div>
+                            <form action="{{ route('later.destroy', $item->rowId) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+
+                                <button type="submit" class="btn-sm btn btn-danger">Remove</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form action="{{ route('later.switchCart', $item->rowId) }}" method="POST">
+                                {{ csrf_field() }}
+
+                                <button type="submit" class="btn-sm btn btn-success">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 mx-auto my-auto p-top">
+                        <select class="custom-select text-center">
+                            <option selected value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 mx-auto my-auto text-center p-top">
+                        <h5>{{ $item->model->presentPrice() }}</h5>
+                    </div>
+                </div>
+                <div class="border-bottom pt-3"></div>
+
+            @endforeach
+
+            @else
+
+                <div class="alert alert-danger mt-3">
+                    <h5 class="text-danger">You have no items Saved for Later.</h5>
                 </div>
 
-                <div class="col-sm-4 mx-auto my-auto p-top text-center">
-                    <h5 class="font-weight-bold">MacBook Pro</h5>
-                    <h5 class="text-secondary">15 inch, 1TB SSD, 32GB RAM</h5>
-                </div>
-                <div class="col-sm-2 mx-auto my-auto p-top text-center">
-                    <div class="">
-                        <a href="#"><h6>Remove</h6></a>
-                    </div>
-                    <div class="">
-                        <a href="#"><h6>Save for later</h6></a>
-                    </div>
-                </div>
-                <div class="col-sm-2 mx-auto my-auto p-top">
-                    <select class="custom-select text-center">
-                        <option selected value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="col-sm-2 mx-auto my-auto text-center p-top">
-                    <h5>$2499.99</h5>
-                </div>
-            </div>
-            <div class="border-bottom pt-3"></div>
-
-            <div class="row pt-3">
-                <div class="col-sm-2 my-auto mx-auto">
-                    <a href="#"><img src="img/macbookpro.png" alt="Product Image"></a>
-                </div>
-
-                <div class="col-sm-4 mx-auto my-auto p-top text-center">
-                    <h5 class="font-weight-bold">MacBook Pro</h5>
-                    <h5 class="text-secondary">15 inch, 1TB SSD, 32GB RAM</h5>
-                </div>
-                <div class="col-sm-2 mx-auto my-auto p-top text-center">
-                    <div class="">
-                        <a href="#"><h6>Remove</h6></a>
-                    </div>
-                    <div class="">
-                        <a href="#"><h6>Save for later</h6></a>
-                    </div>
-                </div>
-                <div class="col-sm-2 mx-auto my-auto p-top">
-                    <select class="custom-select text-center">
-                        <option selected value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="col-sm-2 mx-auto my-auto text-center p-top">
-                    <h5>$2499.99</h5>
-                </div>
-            </div>
-            <div class="border-bottom pt-3"></div>
+            @endif
         </div>
     </div>
 </div>

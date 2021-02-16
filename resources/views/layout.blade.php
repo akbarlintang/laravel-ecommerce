@@ -11,22 +11,22 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand logo" href="{{ route('home-page') }}">Zeroshop</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse nav-list" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto justify-content-around">
-                    <a class="nav-link" href="{{ route('shop.index') }}">Shop</a>
-                    <a class="nav-link" href="#">About</a>
-                    <a class="nav-link" href="#">Blog</a>
-                    <a class="nav-link" href="{{ route('cart.index') }}">Cart  
-                        @if (Cart::instance('default')->count() > 0)
-                            <span class="cart-q">{{ Cart::instance('default')->count() }}</span>
-                        @endif
-                    </a>
+                        <a class="nav-link" href="{{ route('shop.index') }}">Shop</a>
+                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="{{ route('cart.index') }}">Cart  
+                            @if (Cart::instance('default')->count() > 0)
+                                <span class="cart-q">{{ Cart::instance('default')->count() }}</span>
+                            @endif
+                        </a>
                     </div>
                 </div>
             </div>
@@ -36,17 +36,7 @@
             @yield('content')
         </div>
 
-        <footer>
-            <div class="footer-content container">
-                <div class="made-with">Made by Akbar Lintang Aji</div>
-                <ul>
-                    <li>Follow Me:</li>
-                    <li><a href="#"><i class="fa fa-globe"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-        </footer>
+        @include('partials.footer')
 
         <script src="/js/app.js"></script>
     </body>

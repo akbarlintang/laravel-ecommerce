@@ -22,9 +22,13 @@ Route::get('/shop/{product}', 'App\Http\Controllers\ShopController@show')->name(
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::post('/cart', 'App\Http\Controllers\CartController@store')->name('cart.store');
 Route::delete('/cart/{product}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
+Route::post('/cart/switchlater/{product}', 'App\Http\Controllers\CartController@switchSave')->name('cart.switchSave');
+
+Route::delete('/later/{product}', 'App\Http\Controllers\SaveForLaterController@destroy')->name('later.destroy');
+Route::post('/later/switchcart/{product}', 'App\Http\Controllers\SaveForLaterController@switchCart')->name('later.switchCart');
 
 Route::get('/empty', function() {
-    Cart::destroy();
+    Cart::instance('saveForLater')->destroy();
 });
 
 Route::view('/checkout', 'checkout');

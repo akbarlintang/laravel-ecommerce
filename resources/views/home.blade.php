@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
-            <nav id="navbar-top" class="navbar navbar-expand-lg navbar-dark">
+            <nav id="navbar-top" class="navbar navbar-expand-lg navbar-light">
                 <div class="container nav-top">
                     <a class="navbar-brand logo" href="{{ route('home-page') }}">Zeroshop</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,8 +65,8 @@
                             <a href="{{ route('shop.show', $product->slug) }}" class="product-card">
                                 <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3">
                                 <div class="card-body">
-                                    <div class="product-name card-text font-weight-bold text-white">{{ $product->name }}</div>
-                                    <div class="product-price card-text font-weight-normal text-white">{{ $product->presentPrice() }}</div>
+                                    <div class="product-name card-text font-weight-bold">{{ $product->name }}</div>
+                                    <div class="product-price card-text font-weight-normal">{{ $product->presentPrice() }}</div>
                                 </div>
                             </a>
                         </div>
@@ -86,20 +86,32 @@
                 <p class="section-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. In unde neque excepturi alias corrupti tenetur repellat impedit necessitatibus aliquam placeat mollitia, eaque, deleniti dignissimos consequatur. Nostrum nihil enim asperiores quasi?</p>
 
                 <div class="blog-posts">
-                    <div class="blog-post">
-                        <a href="#"><img src="img/blog1.png" alt="Blog Image"></a>
-                        <a href="#"><h2 class="blog-title">Blog Post Title 1</h2></a>
-                        <div class="blog-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam facere nihil voluptates.</div>
+                    <div class="card blog-post">
+                        <a href="#" class="product-card">
+                            <img src="img/blog1.png" class="card-img-top" alt="Blog Image">
+                            <div class="card-body">
+                                <h2 class="blog-title card-text font-weight-bold text-center">Blog Post Title 1</h2>
+                                <div class="blog-desc card-text font-weight-normal py-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam facere nihil voluptates.</div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="blog-post">
-                        <a href="#"><img src="img/blog1.png" alt="Blog Image"></a>
-                        <a href="#"><h2 class="blog-title">Blog Post Title 1</h2></a>
-                        <div class="blog-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam facere nihil voluptates.</div>
+                    <div class="card blog-post">
+                        <a href="#" class="product-card">
+                            <img src="img/blog1.png" class="card-img-top" alt="Blog Image">
+                            <div class="card-body">
+                                <h2 class="blog-title card-text font-weight-bold text-center">Blog Post Title 1</h2>
+                                <div class="blog-desc card-text font-weight-normal py-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam facere nihil voluptates.</div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="blog-post">
-                        <a href="#"><img src="img/blog1.png" alt="Blog Image"></a>
-                        <a href="#"><h2 class="blog-title">Blog Post Title 1</h2></a>
-                        <div class="blog-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam facere nihil voluptates.</div>
+                    <div class="card blog-post">
+                        <a href="#" class="product-card">
+                            <img src="img/blog1.png" class="card-img-top" alt="Blog Image">
+                            <div class="card-body">
+                                <h2 class="blog-title card-text font-weight-bold text-center">Blog Post Title 1</h2>
+                                <div class="blog-desc card-text font-weight-normal py-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam facere nihil voluptates.</div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

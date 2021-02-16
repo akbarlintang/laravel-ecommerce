@@ -43,8 +43,8 @@
                                 <a href="{{ route('shop.show', $product->slug) }}" class="product-card">
                                     <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3">
                                     <div class="card-body">
-                                        <div class="product-name card-text font-weight-bold text-white">{{ $product->name }}</div>
-                                        <div class="product-price card-text font-weight-normal text-white">{{ $product->presentPrice() }}</div>
+                                        <div class="product-name card-text font-weight-bold">{{ $product->name }}</div>
+                                        <div class="product-price card-text font-weight-normal">{{ $product->presentPrice() }}</div>
                                     </div>
                                 </a>
                             </div>
