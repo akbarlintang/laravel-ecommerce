@@ -5,8 +5,8 @@
             @foreach ($mightLike as $product)
                 <div class="col-sm">
                     <div class="card">
-                        <a href="{{ route('shop.show', $product->slug) }}" class="product-card">
-                            <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3">
+                        <a href="{{ route('shop.show', $product->slug) }}" class="product-card shadow">
+                            <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3 product-img w-auto">
                             <div class="card-body">
                                 <div class="product-name card-text font-weight-bold">{{ $product->name }}</div>
                                 <div class="product-price card-text font-weight-normal">{{ $product->presentPrice() }}</div>

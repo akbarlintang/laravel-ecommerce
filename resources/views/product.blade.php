@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<nav aria-label="breadcrumb" class="py-4">
+<nav aria-label="breadcrumb" class="nav-bread pb-4">
     <ol class="breadcrumb">
         <div class="container d-flex">
             <li class="breadcrumb-item"><a href="/">Home</a></li>

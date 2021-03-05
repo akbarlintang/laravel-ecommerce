@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<nav aria-label="breadcrumb" class="py-4">
+<nav aria-label="breadcrumb" class="nav-bread pb-4">
     <ol class="breadcrumb">
         <div class="container d-flex">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -36,9 +36,9 @@
 
             @foreach (Cart::content() as $item)
             <div class="row pt-3">
-                <div class="col-sm-2 my-auto mx-auto">
+                <div class="col-sm-2 text-center">
                     <a href="{{ route('shop.show', $item->model->slug) }}">
-                        <img src="{{ asset('img/products/'.$item->model->slug.'.png') }}" alt="Product Image">
+                        <img class="product-img w-auto" src="{{ asset('img/products/'.$item->model->slug.'.png') }}" alt="Product Image">
                     </a>
                 </div>
 
@@ -49,7 +49,7 @@
                 </a>
 
                 <div class="col-sm-2 mx-auto my-auto p-top text-center">
-                    <div>
+                    <div class="mb-2">
                         <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
@@ -66,14 +66,14 @@
                     </div>
                 </div>
                 <div class="col-sm-2 mx-auto my-auto p-top">
-                    <select class="custom-select text-center">
-                        <option selected value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                    <select class="quantity custom-select text-center" data-id="{{ $item->rowId }}">
+                        @for($i = 1; $i < 5 + 1; $i++)
+                            <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                        @endfor
                     </select>
                 </div>
                 <div class="col-sm-2 mx-auto my-auto text-center p-top">
-                    <h5>{{ $item->model->presentPrice() }}</h5>
+                    <h5>{{ '$ ' . number_format($item->subtotal() / 100) }}</h5>
                 </div>
             </div>
             <div class="border-bottom pt-3"></div>
@@ -113,7 +113,7 @@
 
             <div class="text-center pt-5">
                 <a href="{{ route('shop.index') }}" class="btn btn-primary text-white btn-lg mb-3 mx-3">Continue shopping</a>
-                <a href="/checkout" class="btn btn-success btn-lg text-white mb-3 mx-3">Proceed to Checkout</a>
+                <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg text-white mb-3 mx-3">Proceed to Checkout</a>
             </div>
 
             @else
@@ -145,7 +145,7 @@
                         <h5 class="text-secondary">{{ $item->model->details }}</h5>
                     </div>
                     <div class="col-sm-2 mx-auto my-auto p-top text-center">
-                        <div>
+                        <div class="mb-2">
                             <form action="{{ route('later.destroy', $item->rowId) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
@@ -162,10 +162,12 @@
                         </div>
                     </div>
                     <div class="col-sm-2 mx-auto my-auto p-top">
-                        <select class="custom-select text-center">
+                        <select class="quantity custom-select text-center" data-id="{{ $item->rowId }}">
                             <option selected value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                         </select>
                     </div>
                     <div class="col-sm-2 mx-auto my-auto text-center p-top">
@@ -189,4 +191,30 @@
 
 @include('partials.related')
 
+@endsection
+
+@section('extra-js')
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        (function() {
+            const classname = document.querySelectorAll('.quantity');
+
+            Array.from(classname).forEach(function(element) {
+                element.addEventListener('change', function() {
+                    const id = element.getAttribute('data-id')
+                    axios.patch(`/cart/${id}`, {
+                        quantity: this.value
+                    })
+                    .then(function (response) {
+                        // console.log(response);
+                        window.location.href = '{{ route('cart.index') }}'
+                    })
+                    .catch(function (error) {
+                        // console.log(error);
+                        window.location.href = '{{ route('cart.index') }}'
+                    });
+                })
+            })
+        })();
+    </script>
 @endsection

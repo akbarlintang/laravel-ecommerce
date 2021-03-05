@@ -35,8 +35,8 @@
 
             <div class="hero container">
                 <div class="hero-copy">
-                    <h1>Zeroshop</h1>
-                    <p>One stop solution for your gadget needs.</p>
+                    <h1 class="text-white">Zeroshop</h1>
+                    <p class="text-white">One stop solution for your gadget needs.</p>
                     <div class="hero-buttons">
                         <a href="/shop" class="btn button">Shop Now</a>
                     </div>
@@ -63,7 +63,7 @@
                     @foreach ($products as $product)
                         <div class="card">
                             <a href="{{ route('shop.show', $product->slug) }}" class="product-card">
-                                <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3">
+                                <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image" class="card-img-top px-3 py-3 product-img w-auto">
                                 <div class="card-body">
                                     <div class="product-name card-text font-weight-bold">{{ $product->name }}</div>
                                     <div class="product-price card-text font-weight-normal">{{ $product->presentPrice() }}</div>
