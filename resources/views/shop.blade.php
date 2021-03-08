@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb" class="nav-bread pb-4">
     <ol class="breadcrumb">
         <div class="container d-flex">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item font-weight-bold"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Shop</li>
         </div>
     </ol>

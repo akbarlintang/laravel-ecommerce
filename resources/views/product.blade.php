@@ -4,8 +4,8 @@
 <nav aria-label="breadcrumb" class="nav-bread pb-4">
     <ol class="breadcrumb">
         <div class="container d-flex">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/shop">Shop</a></li>
+            <li class="breadcrumb-item font-weight-bold"><a href="/">Home</a></li>
+            <li class="breadcrumb-item font-weight-bold"><a href="/shop">Shop</a></li>
             <li class="breadcrumb-item active" aria-current="page">Product</li>
         </div>
     </ol>
@@ -21,7 +21,7 @@
             <h5 class="text-secondary">{{ $product->details }}</h5>
             <h4 class="font-weight-bold">{{ $product->presentPrice() }}</h4>
 
-            <p class="pt-3">{{ $product->description }}</p>
+            <p class="pt-3">{!! $product->description !!}</p>
 
             <form action="{{ route('cart.store') }}" method="POST">
                 {{ csrf_field() }}
