@@ -167,7 +167,7 @@
                 @foreach (Cart::content() as $item)
                     <div class="row pt-3">
                         <div class="col-3 my-auto mx-auto">
-                            <a href="#"><img src="{{ asset('img/products/'.$item->model->slug.'.png') }}" alt="Product Image"></a>
+                            <a href="#"><img src="{{ asset('/storage/'.$item->model->image) }}" alt="Product Image"></a>
                         </div>
 
                         <div class="col-6 mx-auto my-auto">

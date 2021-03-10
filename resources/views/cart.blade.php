@@ -38,7 +38,7 @@
             <div class="row pt-3">
                 <div class="col-sm-2 text-center">
                     <a href="{{ route('shop.show', $item->model->slug) }}">
-                        <img class="product-img w-auto" src="{{ asset('img/products/'.$item->model->slug.'.png') }}" alt="Product Image">
+                        <img class="product-img w-auto" src="{{ asset('/storage/'.$item->model->image) }}" alt="Product Image">
                     </a>
                 </div>
 
@@ -135,7 +135,7 @@
             @foreach (Cart::instance('saveForLater')->content() as $item)
                 <div class="row pt-3">
                     <div class="col-sm-2 my-auto mx-auto">
-                        <a href="{{ route('shop.show', $item->model->slug) }}">
+                        <a href="{{ asset('/storage/'.$item->model->image) }}">
                             <img src="{{ asset('img/products/'.$item->model->slug.'.png') }}" alt="Product Image">
                         </a>
                     </div>

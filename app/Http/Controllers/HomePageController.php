@@ -16,6 +16,6 @@ class HomePageController extends Controller
     {
         $products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
 
-        return view('home')->with('products', $products);
+        return view('homepage')->with('products', $products);
     }
 }

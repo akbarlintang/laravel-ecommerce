@@ -13,10 +13,25 @@
 
 <div class="container">
     <div class="row py-3 pl-5 pr-5">
-        <div class="col-sm">
-            <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image">
+        <div class="col-sm p-3">
+            <div class="product-section-image text-center">
+                <img src="{{ asset('/storage/'.$product->image) }}" alt="Product Image"id="currentImg" class="active">
+                <!-- <img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="Product Image"> -->
+            </div>
+            <div class="product-section-images">
+                <div class="product-section-thumbnail selected-img">
+                    <img src="{{ asset('/storage/'.$product->image) }}" alt="">
+                </div>
+                @if ($product->images)
+                    @foreach (json_decode($product->images, true) as $image)
+                        <div class="product-section-thumbnail">
+                            <img src="{{ asset('/storage/'.$image) }}" alt="">
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
-        <div class="col-sm product-field">
+        <div class="col-sm product-field pt-3">
             <h3 class="font-weight-bold">{{ $product->name }}</h3>
             <h5 class="text-secondary">{{ $product->details }}</h5>
             <h4 class="font-weight-bold">{{ $product->presentPrice() }}</h4>
@@ -37,4 +52,27 @@
 
 @include('partials.related')
 
+@endsection
+
+@section ('extra-js')
+    <script>
+        (function() {
+            const currentImg = document.querySelector('#currentImg');
+            const images = document.querySelectorAll('.product-section-thumbnail');
+
+            images.forEach((element) => element.addEventListener('click', thumbnailClick));
+
+            function thumbnailClick(e) {
+                currentImg.classList.remove('active');
+
+                currentImg.addEventListener('transitionend', () => {
+                    currentImg.src = this.querySelector('img').src;
+                    currentImg.classList.add('active');
+                })
+
+                images.forEach((element) => element.classList.remove('selected-img'));
+                this.classList.add('selected-img');
+            }
+        })();
+    </script>
 @endsection
